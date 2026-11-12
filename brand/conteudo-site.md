@@ -2,7 +2,24 @@
 
 Estrutura e textos aprovados no rascunho da home de kodarsoft.com. É um ponto de partida para o desenvolvimento: ajuste os textos conforme o [tom de voz](tom-de-voz.md) e confirme as promessas marcadas em [posicionamento.md](posicionamento.md).
 
-**Contato principal:** WhatsApp com a mensagem pronta "Olá, Kodar! Quero conversar sobre um projeto." (`src/config/site.ts`). Ele aparece no menu, no hero, no bloco final, no rodapé e em um botão flutuante.
+**Contato principal:** WhatsApp com a mensagem pronta "Olá, Kodar! Quero conversar sobre um projeto." (`src/config/site.ts`). Ele aparece no menu, no hero, nos serviços, no bloco final e no rodapé.
+
+## Aplicação na versão animada
+
+A landing page mantém este documento como referência e adapta a estrutura às informações disponíveis:
+
+- Slogan principal preservado no hero; serviços explicados por necessidades do negócio.
+- WhatsApp confirmado: **(19) 99582-8704**, centralizado em `src/config/site.ts`.
+- Menu: O que fazemos · Na prática · Por trás · Dúvidas.
+- Abertura escura com o slogan em três linhas e escultura geométrica 3D interativa.
+- Serviços apresentados em acordeão editorial, com composições animadas próprias.
+- “Na prática” apresenta uma simulação manipulável: tarefas manuais se conectam em um fluxo. A seção de portfólio real fica para quando houver projetos e imagens autorizados.
+- Processo de conversa, proposta, desenvolvimento e entrega integrado à seção humana da empresa.
+- Chamada final ampla, com link circular para o WhatsApp e logotipo oficial em grande escala no rodapé.
+- A apresentação usa o nome confirmado do fundador, Rafael Soares Matos.
+- Orçamento em um dia, prazo de duas a quatro semanas e suporte incluso continuam como referências pendentes. A página usa condições definidas na proposta de cada projeto.
+- E-mail e redes sociais pendentes não aparecem na página.
+- Textos implementados estão em `src/content/` e `src/components/sections/`. A análise das decisões está em `docs/ANALISE-DA-MARCA.md`.
 
 ## 1. Menu (fixo no topo)
 

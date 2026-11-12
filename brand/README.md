@@ -26,6 +26,7 @@ Tudo o que define a marca Kodar, organizado para quem desenvolve o site (pessoas
 | [cores.md](cores.md) | Paleta, tokens, contrastes e proporções |
 | [tipografia.md](tipografia.md) | Fontes, escala tipográfica e uso |
 | [espaco-e-formas.md](espaco-e-formas.md) | Espaçamento, cantos, bordas e o grafismo de colchetes |
+| [movimento.md](movimento.md) | Direção de animação, interação, acessibilidade e escultura 3D |
 | [iconografia.md](iconografia.md) | Estilo de ícones |
 | [aplicacoes.md](aplicacoes.md) | Cartão, assinatura de e-mail, avatar e imagem de compartilhamento |
 | [conteudo-site.md](conteudo-site.md) | Estrutura e textos de referência do site |

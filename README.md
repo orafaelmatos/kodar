@@ -4,7 +4,11 @@ Site da **Kodar**, a software house que desenvolve sites, sistemas sob medida, a
 
 > Tecnologia com gente por trás.
 
-Este repositório tem o ambiente e a arquitetura do site, com toda a identidade da marca organizada em [`brand/`](brand/). O site ainda vai ser construído; o roteiro está em [`docs/ROADMAP.md`](docs/ROADMAP.md).
+Este repositório reúne a landing page institucional e todo o material da marca Kodar. Os sites de clientes são desenvolvidos em projetos e repositórios próprios.
+
+Landing page animada com escultura 3D interativa, serviços em acordeão editorial, simulação de automação, apresentação da empresa e dúvidas frequentes. Os contatos abrem o WhatsApp **(19) 99582-8704**, com mensagens específicas por serviço. A identidade da marca está organizada em [`brand/`](brand/).
+
+A [análise da marca e do posicionamento](docs/ANALISE-DA-MARCA.md) documenta as decisões de comunicação e design. A seção “Na prática” demonstra uma automação com um controle deslizante. É uma simulação; não representa um projeto entregue.
 
 ## Começar
 
@@ -29,16 +33,29 @@ npm run dev        # http://localhost:3000
 
 ## Stack
 
-Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS 4, ESLint e Prettier. Fontes auto-hospedadas com `next/font/local`.
+Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS 4, ESLint e Prettier. Fontes auto-hospedadas com `next/font/local`. A escultura usa Three.js, carregado separadamente, com alternativa em CSS.
 
 ## Comandos
 
 | Comando | O que faz |
 | --- | --- |
 | `npm run dev` | Ambiente local |
-| `npm run build` / `npm start` | Build e servidor de produção |
+| `npm run build` / `npm start` | Exporta para `out/` e serve a versão de produção em http://127.0.0.1:3000 |
 | `npm run brand` | Regenera tokens e logos a partir de `brand/` |
 | `npm run lint` · `npm run typecheck` · `npm run format` | Qualidade de código |
+
+## Publicação
+
+O projeto gera arquivos estáticos na pasta `out/`, sem depender de servidor de aplicação. Essa pasta pode ser publicada em uma hospedagem estática. O servidor de `npm start` permite conferir a build local; `PORT` e `HOST` são opcionais.
+
+O endereço principal usa `https://kodarsoft.com` por padrão. Para publicar em outro endereço, defina `NEXT_PUBLIC_SITE_URL` **antes da build**, para atualizar os metadados, o sitemap e os dados estruturados:
+
+```bash
+NEXT_PUBLIC_SITE_URL=https://seu-dominio.com npm run build
+npm start
+```
+
+Os dados de contato ficam em `src/config/site.ts`. E-mail e redes sociais não confirmados não aparecem na página. Prazos, condições de suporte e projetos reais continuam como pendências em [`docs/ROADMAP.md`](docs/ROADMAP.md).
 
 ## Licenças
 

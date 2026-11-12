@@ -85,12 +85,12 @@
   --radius-md: var(--radius-md);
   --radius-lg: var(--radius-lg);
   --radius-pill: var(--radius-pill);
-  --text-display-xl: 56px;
-  --text-display-xl--line-height: 60px;
+  --text-display-xl: clamp(2.75rem, 10vw, 7rem);
+  --text-display-xl--line-height: 1.02;
   --text-display-xl--letter-spacing: -0.02em;
   --text-display-xl--font-weight: 600;
-  --text-display-l: 40px;
-  --text-display-l--line-height: 46px;
+  --text-display-l: clamp(2.25rem, 5vw, 4rem);
+  --text-display-l--line-height: 1.1;
   --text-display-l--letter-spacing: -0.015em;
   --text-display-l--font-weight: 600;
   --text-heading: 28px;

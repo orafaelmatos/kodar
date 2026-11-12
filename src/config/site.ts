@@ -8,7 +8,7 @@ export const site = {
   altSlogans: ["Codar é com a gente.", "Do código à solução.", "Seu negócio, em código."],
   description:
     "Kodar desenvolve sites, sistemas sob medida, automações e soluções com IA para empresas. Tecnologia com gente por trás.",
-  url: "https://kodarsoft.com",
+  url: process.env.NEXT_PUBLIC_SITE_URL || "https://kodarsoft.com",
   locale: "pt_BR",
   founder: "Rafael Soares Matos",
 
@@ -21,15 +21,15 @@ export const site = {
 
   /** Âncoras das seções da home, na ordem do menu. */
   nav: [
-    { href: "#servicos", label: "Serviços" },
-    { href: "#projetos", label: "Projetos" },
-    { href: "#sobre", label: "Sobre" },
+    { href: "#servicos", label: "O que fazemos" },
+    { href: "#na-pratica", label: "Na prática" },
+    { href: "#sobre", label: "Por trás" },
     { href: "#duvidas", label: "Dúvidas" },
   ],
 
   contact: {
-    // TODO: número real — código do país + DDD + número, só dígitos (ex.: 5511999999999).
-    whatsapp: "5500000000000",
+    whatsapp: "5519995828704",
+    whatsappDisplay: "(19) 99582-8704",
     whatsappMessage: "Olá, Kodar! Quero conversar sobre um projeto.",
     // TODO: confirmar quando o domínio e o e-mail estiverem ativos.
     email: "contato@kodarsoft.com",

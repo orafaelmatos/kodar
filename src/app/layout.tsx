@@ -10,10 +10,17 @@ export const metadata: Metadata = {
     template: `%s · ${site.name}`,
   },
   description: site.description,
+  alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     locale: site.locale,
     siteName: site.name,
+    title: `${site.name} · ${site.slogan}`,
+    description: site.description,
+    url: site.url,
+  },
+  twitter: {
+    card: "summary_large_image",
     title: `${site.name} · ${site.slogan}`,
     description: site.description,
   },

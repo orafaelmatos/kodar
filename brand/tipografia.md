@@ -14,8 +14,8 @@ Cada estilo vira uma classe do Tailwind com tamanho, altura de linha, peso e esp
 
 | Estilo | Classe | Fonte | Tamanho / linha | Peso | Uso |
 | --- | --- | --- | --- | --- | --- |
-| display-xl | `text-display-xl` | Sora | 56 / 60 | 600 | Hero do site e capas |
-| display-l | `text-display-l` | Sora | 40 / 46 | 600 | Títulos de seção |
+| display-xl | `text-display-xl` | Sora | fluido, 44–112 / 1.02 | 600 (500 no hero editorial) | Hero do site e chamada final |
+| display-l | `text-display-l` | Sora | fluido, 36–64 / 1.1 | 600 | Títulos de seção e serviços |
 | heading | `text-heading` | Sora | 28 / 34 | 600 | Títulos de página e blocos |
 | title | `text-title` | Sora | 20 / 28 | 600 | Títulos de cards |
 | body-l | `text-body-l` | DM Sans | 18 / 28 | 400 | Parágrafos de abertura |
@@ -38,3 +38,9 @@ Cada estilo vira uma classe do Tailwind com tamanho, altura de linha, peso e esp
 - Linhas de texto com cerca de 65 caracteres (`max-w-xl` a `max-w-2xl`).
 - Títulos em caixa normal, com `text-wrap: balance` (já aplicado).
 - Nunca use outra fonte para escrever "kodar" no lugar do logo.
+
+## Aplicação editorial e movimento
+
+Na landing page animada, o hero usa três linhas com Sora, entreletra mais fechada e entrada sequencial. A última linha pode usar contorno em `papel` sobre `noite`. O texto permanece no HTML. No celular, o hero usa escala fluida entre 44 e 76px, limitada pela largura disponível. Os demais textos conservam a escala da marca.
+
+O logotipo grande do rodapé continua sendo o SVG oficial pelo componente `<Logo />`.

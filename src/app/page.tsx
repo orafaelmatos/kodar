@@ -1,24 +1,55 @@
-import { Chevrons } from "@/components/brand/Chevrons";
-import { Logo } from "@/components/brand/Logo";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
+import { Hero } from "@/components/sections/Hero";
+import { Services } from "@/components/sections/Services";
+import { Solutions } from "@/components/sections/Solutions";
+import { About } from "@/components/sections/About";
+import { Faq } from "@/components/sections/Faq";
+import { FinalCta } from "@/components/sections/FinalCta";
 import { site } from "@/config/site";
 
-/**
- * Página provisória: só confirma que marca, fontes e tokens estão funcionando.
- * O site real será construído a partir de brand/conteudo-site.md e docs/ROADMAP.md.
- */
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: site.name,
+  description: site.description,
+  url: site.url,
+  logo: `${site.url}/brand/logos/kodar-horizontal.svg`,
+  telephone: `+${site.contact.whatsapp}`,
+  founder: { "@type": "Person", name: site.founder },
+  areaServed: { "@type": "Country", name: "Brasil" },
+  knowsAbout: site.services.map((service) => service.title),
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: `+${site.contact.whatsapp}`,
+    contactType: "sales",
+    availableLanguage: "Portuguese",
+  },
+};
+
 export default function Home() {
   return (
-    <main className="mx-auto flex min-h-dvh max-w-5xl flex-col justify-center gap-10 px-4 py-16 sm:px-8">
-      <Logo className="h-12 w-auto self-start" />
-      <div className="flex flex-col gap-4">
-        <span className="label text-menta-forte">Em construção</span>
-        <h1 className="text-display-xl">{site.slogan}</h1>
-        <p className="max-w-xl text-body-l text-ink-muted">{site.description}</p>
-      </div>
-      <div className="relative overflow-hidden rounded-lg bg-noite p-6">
-        <Logo tone="negative" className="relative h-10 w-auto" />
-        <Chevrons count={4} className="absolute top-1/2 -right-6 h-28 -translate-y-1/2" />
-      </div>
-    </main>
+    <>
+      <a
+        href="#conteudo"
+        className="sr-only fixed top-4 left-4 z-50 rounded-md bg-menta px-6 py-4 font-semibold text-on-brand focus:not-sr-only"
+      >
+        Pular para o conteúdo
+      </a>
+      <Header />
+      <main id="conteudo">
+        <Hero />
+        <Services />
+        <Solutions />
+        <About />
+        <Faq />
+        <FinalCta />
+      </main>
+      <Footer />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }}
+      />
+    </>
   );
 }
