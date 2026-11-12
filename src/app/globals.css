@@ -1,0 +1,51 @@
+@import "tailwindcss";
+/* Tokens da marca + tema do Tailwind (gerado por `npm run brand`) */
+@import "../styles/tokens.css";
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--surface);
+    color: var(--ink);
+    font-family: --theme(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: --theme(--font-display);
+    text-wrap: balance;
+  }
+
+  /* Anel de foco da marca: sólido, 2px, menta-forte (brand/cores.md) */
+  :focus-visible {
+    outline: 2px solid var(--menta-forte);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* Rótulo em caixa alta (estilo `label` da marca) */
+@utility label {
+  font-family: --theme(--font-mono);
+  font-size: --theme(--text-label);
+  line-height: --theme(--text-label--line-height);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}

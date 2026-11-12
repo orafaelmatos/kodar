@@ -1,0 +1,119 @@
+/* Kodar — gerado de brand/tokens.json por scripts/build-brand.mjs. NÃO EDITE À MÃO. */
+
+/* 1. Variáveis da marca: tema claro (padrão) */
+:root {
+  --surface: #f5f8f7;
+  --surface-raised: #ffffff;
+  --line: #d7dfe2;
+  --ink: #0d1424;
+  --ink-muted: #4b5668;
+  --noite: #0d1424;
+  --noite-claro: #1e2b45;
+  --menta: #14c9a1;
+  --menta-forte: #0a7a64;
+  --papel: #eef3f6;
+  --nevoa: #e2f5ef;
+  --coral: #ff6b4a;
+  --coral-forte: #c2401f;
+  --on-brand: #0d1424;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 40px;
+  --space-6: 64px;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-pill: 999px;
+}
+
+/* 2. Tema escuro: segue o sistema, a menos que data-theme="light" force o claro */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --surface: #0b111c;
+    --surface-raised: #141c2c;
+    --line: #2a364c;
+    --ink: #eef3f6;
+    --ink-muted: #9aa6b8;
+    --noite: #24375c;
+    --noite-claro: #2f4670;
+    --menta-forte: #3de3bc;
+    --nevoa: #103129;
+    --coral: #ff8466;
+    --coral-forte: #ff8466;
+    color-scheme: dark;
+  }
+}
+
+/* 3. Tema escuro forçado (ex.: botão de tema) */
+:root[data-theme="dark"] {
+  --surface: #0b111c;
+  --surface-raised: #141c2c;
+  --line: #2a364c;
+  --ink: #eef3f6;
+  --ink-muted: #9aa6b8;
+  --noite: #24375c;
+  --noite-claro: #2f4670;
+  --menta-forte: #3de3bc;
+  --nevoa: #103129;
+  --coral: #ff8466;
+  --coral-forte: #ff8466;
+  color-scheme: dark;
+}
+
+/* 4. Tema do Tailwind: bg-surface, text-ink, border-line, bg-menta, font-display, text-display-xl, rounded-md… */
+@theme inline {
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-line: var(--line);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-noite: var(--noite);
+  --color-noite-claro: var(--noite-claro);
+  --color-menta: var(--menta);
+  --color-menta-forte: var(--menta-forte);
+  --color-papel: var(--papel);
+  --color-nevoa: var(--nevoa);
+  --color-coral: var(--coral);
+  --color-coral-forte: var(--coral-forte);
+  --color-on-brand: var(--on-brand);
+  --font-display: var(--font-sora), "Sora", "DM Sans", system-ui, sans-serif;
+  --font-sans: var(--font-dm-sans), "DM Sans", system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), "JetBrains Mono", ui-monospace, monospace;
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-pill: var(--radius-pill);
+  --text-display-xl: 56px;
+  --text-display-xl--line-height: 60px;
+  --text-display-xl--letter-spacing: -0.02em;
+  --text-display-xl--font-weight: 600;
+  --text-display-l: 40px;
+  --text-display-l--line-height: 46px;
+  --text-display-l--letter-spacing: -0.015em;
+  --text-display-l--font-weight: 600;
+  --text-heading: 28px;
+  --text-heading--line-height: 34px;
+  --text-heading--letter-spacing: -0.01em;
+  --text-heading--font-weight: 600;
+  --text-title: 20px;
+  --text-title--line-height: 28px;
+  --text-title--font-weight: 600;
+  --text-body-l: 18px;
+  --text-body-l--line-height: 28px;
+  --text-body-l--font-weight: 400;
+  --text-body: 16px;
+  --text-body--line-height: 26px;
+  --text-body--font-weight: 400;
+  --text-body-s: 14px;
+  --text-body-s--line-height: 22px;
+  --text-body-s--font-weight: 400;
+  --text-label: 12px;
+  --text-label--line-height: 16px;
+  --text-label--letter-spacing: 0.08em;
+  --text-label--font-weight: 600;
+  --text-code: 14px;
+  --text-code--line-height: 22px;
+  --text-code--font-weight: 400;
+}
