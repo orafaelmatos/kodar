@@ -31,7 +31,14 @@ Este é o repositório do site da **Kodar**, a software house de Rafael Soares M
   - frases curtas, sem jargão, sem emoji e sem exclamações exageradas;
   - escreva "IA" e "site".
 - **Dados de contato e links:** sempre de `src/config/site.ts` (use `whatsappUrl()`).
-- **Proibido:** gradientes azul-roxo, ícones emoji, robôs 3D, fotos de banco de imagens genéricas, fontes fora das três da marca.
+- **Tema:** a landing page é só escura. Profundidade vem da cena 3D, de brilhos radiais de menta e de bordas `line`.
+- **Proibido:** gradientes azul-roxo ou de várias cores, ícones emoji, robôs 3D, fotos de banco de imagens genéricas, fontes fora das três da marca.
+
+## Demos para clientes (`src/demos/`)
+
+- Landing pages de demonstração por nicho, publicadas em `/demo/<slug>` (noindex). Leia [`src/demos/README.md`](src/demos/README.md).
+- **As regras da marca Kodar acima não se aplicam às demos**: cada nicho tem cores (hex nos `theme.css` do nicho), fonte (`next/font/google`) e estilo próprios. Só a faixa da Kodar (`KodarBar`) e o crédito do rodapé usam a marca.
+- Dados do cliente em `src/demos/clients/`; textos e visual do nicho em `src/demos/niches/<nicho>/`. Nunca invente nota, avaliações ou números: use os campos do cliente.
 
 ## Arquivos gerados (não edite)
 

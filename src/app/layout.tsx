@@ -27,15 +27,14 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f5f8f7" },
-    { media: "(prefers-color-scheme: dark)", color: "#0b111c" },
-  ],
+  // Mesmo valor do token `surface` no tema escuro (brand/tokens.json).
+  themeColor: "#070b12",
+  colorScheme: "dark",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="pt-BR" className={fontVariables}>
+    <html lang="pt-BR" data-theme="dark" className={fontVariables}>
       <body className="min-h-dvh bg-surface font-sans text-ink antialiased">{children}</body>
     </html>
   );

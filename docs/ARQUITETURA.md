@@ -34,7 +34,14 @@ kodar/
 │   │   ├── apple-icon.png     ícone iOS 180px
 │   │   └── opengraph-image.png imagem de compartilhamento 1200×630
 │   ├── components/
-│   │   └── brand/             primitivos da marca: Logo, Chevrons
+│   │   ├── brand/             primitivos da marca: Logo, Chevrons
+│   │   ├── layout/            Header, Footer, FloatingWhatsApp, MotionDirector
+│   │   ├── mockups/           composições animadas dos produtos (decorativas)
+│   │   ├── sections/          seções da home
+│   │   ├── three/             cena 3D do hero (Three.js)
+│   │   └── ui/                Button, TiltCard, WhatsAppIcon
+│   ├── content/               products.ts, conversion.ts, faq.ts
+│   ├── demos/                 demos de clientes por nicho (ver src/demos/README.md)
 │   ├── config/
 │   │   ├── site.ts            nome, slogan, navegação, contatos, WhatsApp
 │   │   └── fonts.ts           fontes da marca (next/font/local)
@@ -49,9 +56,9 @@ kodar/
 | Tipo | Pasta | Exemplo |
 | --- | --- | --- |
 | Primitivos de UI reutilizáveis | `src/components/ui/` | `Button.tsx`, `Card.tsx`, `Badge.tsx` |
-| Seções da home | `src/components/sections/` | `Hero.tsx`, `Services.tsx`, `Projects.tsx`, `About.tsx`, `Faq.tsx`, `FinalCta.tsx` |
+| Seções da home | `src/components/sections/` | `Hero.tsx`, `Products.tsx`, `Conversion.tsx`, `Faq.tsx`, `FinalCta.tsx` |
 | Layout global | `src/components/layout/` | `Header.tsx`, `Footer.tsx`, `MotionDirector.tsx` |
-| Conteúdo estruturado | `src/content/` | `services.ts`, `projects.ts`, `faq.ts` (dados tipados, textos de `brand/conteudo-site.md`) |
+| Conteúdo estruturado | `src/content/` | `products.ts`, `conversion.ts`, `faq.ts` (dados tipados, textos de `brand/conteudo-site.md`) |
 | Imagens de projetos | `public/projects/` | `nome-do-projeto.webp` |
 | Funções utilitárias | `src/lib/` | `cn.ts` (junção de classes) |
 
@@ -97,18 +104,29 @@ brand/tokens.json ──(npm run brand)──► src/styles/tokens.css ──►
 
 ## Landing page
 
-- Seções em `src/components/sections/`; header, rodapé e controle de movimento em `src/components/layout/`.
-- Menu mobile, controle de movimento, escultura, acordeão de serviços e simulação usam Client Components. As dúvidas usam `<details>` nativo.
-- Serviços e dúvidas têm conteúdo tipado em `src/content/`. A simulação tem quatro etapas ilustrativas no componente `Solutions`.
-- WhatsApp é o contato principal; todos os links usam `whatsappUrl()`, com mensagens contextualizadas.
-- A página acompanha o tema do sistema e respeita movimento reduzido.
-- `robots.ts`, `sitemap.ts`, metadados de compartilhamento e JSON-LD compõem o SEO técnico. `NEXT_PUBLIC_SITE_URL` define a origem antes da build.
-- A análise de posicionamento e as decisões para a versão inicial estão em [`ANALISE-DA-MARCA.md`](ANALISE-DA-MARCA.md).
+- Tema escuro fixo (`data-theme="dark"` em `layout.tsx`).
+- Seções em `src/components/sections/`, na ordem: `Hero`, `Marquee`, `Products`, `Conversion`, `Comparison`, `Process`, `Faq`, `FinalCta`.
+- Header, rodapé, botão fixo de WhatsApp e controle de movimento ficam em `src/components/layout/`.
+- Conteúdo tipado em `src/content/`: `products.ts`, `conversion.ts` (princípios, comparação e etapas) e `faq.ts`.
+- WhatsApp é o contato principal; todos os links usam `whatsappUrl()`, com mensagens por produto.
+- `robots.ts`, `sitemap.ts`, metadados de compartilhamento e JSON-LD (`ProfessionalService` e `FAQPage`) compõem o SEO técnico. `NEXT_PUBLIC_SITE_URL` define a origem antes da build.
 
 ## Movimento e cena 3D
 
-- `MotionDirector.tsx` coordena a pausa global, o movimento reduzido, o progresso de rolagem e as revelações por recorte.
-- `KineticSculpture.tsx` carrega `kinetic-scene.ts` por importação dinâmica. A cena usa geometria própria, materiais com as cores dos tokens e iluminação de estúdio.
-- A renderização usa aproximadamente 30 quadros por segundo, resolução limitada e interrupção fora da tela ou com a aba oculta. A cena estática respeita movimento reduzido.
-- A alternativa em CSS mantém a composição quando WebGL não está disponível. O conteúdo e os contatos não dependem da cena.
-- O slider da simulação aceita toque, mouse e teclado. Não há rolagem substituída nem cursor personalizado.
+- `src/components/three/HeroScene.tsx` carrega `hero-scene.ts` (Three.js) por importação dinâmica, quando o navegador fica ocioso. A cena tem um fundo de fluido (shader), um arco de objetos 3D feitos com geometria própria e uma linha de luz; ela lê as cores das variáveis da marca e encaixa o arco na área `.hero-art`, acima do texto.
+- `src/components/ui/SplitWords.tsx` quebra títulos em palavras para a entrada com desfoque; o `Button` faz o texto rolar letra a letra no hover.
+- Desempenho: resolução limitada, cerca de 60 quadros por segundo em computadores e 30 em celulares, sem vidro com transmissão em aparelhos modestos, e pausa fora da tela ou com a aba oculta.
+- Sem WebGL, os colchetes em SVG continuam no lugar. O conteúdo e os contatos não dependem da cena.
+- `src/components/mockups/ProductMockups.tsx`: composições dos produtos em HTML e CSS (animações em `globals.css`, classes `.mock-*`).
+- `src/components/ui/TiltCard.tsx`: inclinação 3D e luz que seguem o mouse.
+- `MotionDirector.tsx` (sem interface) respeita `prefers-reduced-motion` (`<html data-motion>`) e revela elementos com `data-reveal`. Com movimento reduzido, as animações CSS param e a cena fica estática.
+- `Products.tsx` é a vitrine com abas acessíveis (setas, Home e End); o progresso avança sozinho só com a seção na tela e pausa com o mouse ou o foco dentro dela.
+- Não há rolagem substituída nem cursor personalizado.
+
+## Demos para clientes
+
+- Rotas em `src/app/demo/`: painel interno (`/demo`) e uma página estática por cliente (`/demo/[slug]`, com `generateStaticParams` e `dynamicParams = false`). O layout marca tudo como noindex e o `robots.txt` bloqueia `/demo/`.
+- `src/demos/` separa **dados do cliente** (`clients/`) de **visual do nicho** (`niches/<nicho>/`: textos, tema, template e peças interativas). Componentes comuns em `src/demos/components/` e base de estilo em `src/demos/styles/demos.css`, com variáveis `--d-*`.
+- `npm run demo:new` (`scripts/new-demo.mjs`) cria o arquivo do cliente e o registra em `clients/index.ts`.
+- As demos não seguem a marca Kodar (cores e fontes próprias por nicho); só a faixa `KodarBar` e o crédito do rodapé usam a marca.
+

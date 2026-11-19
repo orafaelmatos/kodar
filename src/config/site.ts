@@ -7,23 +7,22 @@ export const site = {
   slogan: "Tecnologia com gente por trás.",
   altSlogans: ["Codar é com a gente.", "Do código à solução.", "Seu negócio, em código."],
   description:
-    "Kodar desenvolve sites, sistemas sob medida, automações e soluções com IA para empresas. Tecnologia com gente por trás.",
+    "A Kodar desenha e programa do zero landing pages, sites e sistemas sob medida que transformam visita em cliente. Tecnologia com gente por trás.",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://kodarsoft.com",
   locale: "pt_BR",
   founder: "Rafael Soares Matos",
 
-  services: [
+  products: [
+    { id: "landing-pages", title: "Landing pages" },
     { id: "sites", title: "Sites" },
     { id: "sistemas", title: "Sistemas sob medida" },
-    { id: "automacao", title: "Automação" },
-    { id: "ia", title: "IA aplicada" },
   ],
 
   /** Âncoras das seções da home, na ordem do menu. */
   nav: [
-    { href: "#servicos", label: "O que fazemos" },
-    { href: "#na-pratica", label: "Na prática" },
-    { href: "#sobre", label: "Por trás" },
+    { href: "#produtos", label: "O que a gente faz" },
+    { href: "#conversao", label: "Por que converte" },
+    { href: "#processo", label: "Como funciona" },
     { href: "#duvidas", label: "Dúvidas" },
   ],
 

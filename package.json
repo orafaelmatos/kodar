@@ -8,6 +8,7 @@
     "start": "node scripts/serve-static.mjs",
     "lint": "eslint",
     "brand": "node scripts/build-brand.mjs",
+    "demo:new": "node scripts/new-demo.mjs",
     "predev": "npm run brand",
     "prebuild": "npm run brand",
     "format": "prettier --write .",
