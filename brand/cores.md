@@ -6,9 +6,9 @@ A base é **azul-noite** e **verde-menta**, que dão o ar futurista. O **coral**
 
 | Token | Claro | Escuro | Classe Tailwind | Uso |
 | --- | --- | --- | --- | --- |
-| `surface` | `#F5F8F7` | `#0B111C` | `bg-surface` | Fundo da página |
-| `surface-raised` | `#FFFFFF` | `#141C2C` | `bg-surface-raised` | Cards, menus, áreas elevadas |
-| `line` | `#D7DFE2` | `#2A364C` | `border-line` | Divisórias e bordas de campos |
+| `surface` | `#F5F8F7` | `#070B12` | `bg-surface` | Fundo da página |
+| `surface-raised` | `#FFFFFF` | `#0E1522` | `bg-surface-raised` | Cards, menus, áreas elevadas |
+| `line` | `#D7DFE2` | `#1D2839` | `border-line` | Divisórias e bordas de campos |
 | `ink` | `#0D1424` | `#EEF3F6` | `text-ink` | Texto principal |
 | `ink-muted` | `#4B5668` | `#9AA6B8` | `text-ink-muted` | Texto secundário, legendas |
 | `noite` | `#0D1424` | `#24375C` | `bg-noite` | Faixas escuras, rodapé, bloco do símbolo |
@@ -28,7 +28,7 @@ A base é **azul-noite** e **verde-menta**, que dão o ar futurista. O **coral**
 - **Menta não é cor de texto em fundo claro** (1.9:1). Para texto e links, use `text-menta-forte`.
 - **Coral nunca em grandes áreas** e nunca dentro do logo. Como texto, `text-coral-forte`.
 - **Foco:** anel sólido de 2px em `menta-forte`, já aplicado globalmente em `globals.css`.
-- **Sem gradientes** e sem sombras coloridas.
+- **Luz, não gradiente colorido:** no tema escuro, brilhos radiais de `menta` sobre `surface` dão profundidade (hero, cards, chamada final). O botão primário pode ter uma luz menta suave por baixo. Nunca gradientes entre várias cores (proibido azul-roxo) nem outras sombras coloridas; a separação vem das bordas `line`.
 
 ## Contrastes verificados (WCAG)
 
@@ -48,4 +48,6 @@ Ao criar um novo par de cores, confira se texto normal tem pelo menos 4.5:1 e te
 
 ## Temas
 
-O site segue o tema do sistema (`prefers-color-scheme`). Para forçar um tema, defina `data-theme="light"` ou `data-theme="dark"` no `<html>`. Os componentes usam só os tokens, então mudam sozinhos.
+A landing page usa **só o tema escuro** (`data-theme="dark"` no `<html>`). O fundo escuro ficou mais profundo (quase preto) para destacar a cena 3D e os brilhos de menta. Os valores claros continuam nos tokens para peças impressas e materiais em fundo claro.
+
+Por padrão, os componentes seguem o tema do sistema (`prefers-color-scheme`). Para forçar um tema, defina `data-theme="light"` ou `data-theme="dark"` no `<html>`. Os componentes usam só os tokens, então mudam sozinhos.

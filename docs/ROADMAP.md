@@ -1,31 +1,25 @@
 # Roadmap
 
-## Fase 1: site institucional (home de página única)
+## Fase 1: landing page (tema escuro, 3D)
 
-Siga a ordem abaixo. A estrutura e os textos de cada seção estão em [`brand/conteudo-site.md`](../brand/conteudo-site.md).
+- [x] Primitivos de UI: `Button` (pílula), `TiltCard`, ícones `lucide-react` e WhatsApp.
+- [x] Layout: header flutuante com menu mobile, rodapé, botão fixo de WhatsApp e controle global de movimento.
+- [x] Seções: hero com cena 3D, faixa em movimento, produtos (landing pages, sites, sistemas sob medida), por que converte, comparação com geradores de sites, processo, quem está por trás, dúvidas e chamada final.
+- [x] SEO técnico: `sitemap.ts`, `robots.ts`, JSON-LD `ProfessionalService` e `FAQPage`.
+- [ ] Medir no Lighthouse a versão nova (celular) e registrar o resultado.
+- [ ] Testar em aparelhos reais (Android modesto e iPhone) a fluidez da cena 3D.
+- [ ] **Deploy** e domínio kodarsoft.com apontado.
 
-- [x] **Primitivos de UI** em `src/components/ui/`:
-  - `Button`: primário `bg-menta text-on-brand`, secundário com borda `line`, altura 44–48px, `rounded-md`;
-  - cards específicos por serviço e rótulos com os tokens da marca;
-  - `Section`: container de 1120px com os espaçamentos da marca.
-- [x] **Layout:** `Header` fixo com menu mobile, `Footer` e controle global de movimento.
-- [x] **Conteúdo tipado** em `src/content/`: `services.ts` e `faq.ts`; etapas da simulação no componente `Solutions`.
-- [x] **Seções da home:**
-  - Hero imersivo com escultura 3D;
-  - Serviços em acordeão editorial e composições animadas;
-  - Na prática: simulação manipulável de automação em faixa noite;
-  - Processo de trabalho integrado à apresentação humana;
-  - Sobre;
-  - Dúvidas;
-  - Chamada final.
-- [x] **Ícones:** `lucide-react` e ícone oficial do WhatsApp (ver [`brand/iconografia.md`](../brand/iconografia.md)).
-- [x] **Qualidade:**
-  - [x] Lighthouse local da versão animada em celular: 93 em performance e 100 em acessibilidade, boas práticas e SEO. Ver [`VALIDACAO.md`](VALIDACAO.md);
-  - [x] teste no celular e nos temas claro e escuro; navegação, abas, dúvidas, links e auditoria automática de acessibilidade.
-- [x] **SEO técnico:**
-  - `sitemap.ts`, `robots.ts`;
-  - dados estruturados `Organization` / `ProfessionalService` em JSON-LD.
-- [ ] **Deploy** na Vercel e domínio kodarsoft.com apontado.
+## Demos para clientes (`/demo`)
+
+- [x] Etapa 1: arquitetura (dados por cliente, visual por nicho, painel `/demo`, faixa da Kodar, `npm run demo:new`).
+- [x] Etapa 2: clínica odontológica.
+- [x] Etapa 3: oficina mecânica.
+- [ ] Etapa 4: marmoraria.
+- [ ] Etapa 5: marcenaria e móveis planejados.
+- [ ] Etapa 6: pequena indústria e metalúrgica.
+- [ ] Imagem de compartilhamento por demo (prévia do link no WhatsApp com o nome do cliente).
+- [ ] Fotos reais do cliente nos templates (campo opcional), quando ele enviar.
 
 ## Pendências de conteúdo (do Rafael)
 
@@ -47,12 +41,14 @@ Siga a ordem abaixo. A estrutura e os textos de cada seção estão em [`brand/c
 
 ## Fase 2: depois do lançamento (ideias)
 
-- Páginas por serviço (`/sites`, `/sistemas`, `/automacao`, `/ia`) para SEO.
+- Páginas por produto (`/landing-pages`, `/sites`, `/sistemas`) para SEO.
 - Página de cada projeto (`/projetos/[slug]`).
 - Blog ou conteúdos.
 - Formulário de orçamento integrado ao WhatsApp ou ao e-mail.
 - Analytics com respeito à LGPD (Vercel Analytics ou Plausible).
 
-## Refinamentos após a versão animada
+## Próximos passos de conversão
 
-- [ ] Levar a medição local de desempenho acima de 95 mantendo a cena 3D. A versão atual atingiu 93, com LCP de 0,8 s e CLS de 0.
+- [ ] Seção de projetos reais (cases com resultado) assim que houver projetos autorizados: é a prova mais forte para quem está decidindo.
+- [ ] Depoimentos de clientes.
+- [ ] Analytics com eventos de clique no WhatsApp, respeitando a LGPD.

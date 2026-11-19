@@ -31,9 +31,9 @@
 /* 2. Tema escuro: segue o sistema, a menos que data-theme="light" force o claro */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --surface: #0b111c;
-    --surface-raised: #141c2c;
-    --line: #2a364c;
+    --surface: #070b12;
+    --surface-raised: #0e1522;
+    --line: #1d2839;
     --ink: #eef3f6;
     --ink-muted: #9aa6b8;
     --noite: #24375c;
@@ -48,9 +48,9 @@
 
 /* 3. Tema escuro forçado (ex.: botão de tema) */
 :root[data-theme="dark"] {
-  --surface: #0b111c;
-  --surface-raised: #141c2c;
-  --line: #2a364c;
+  --surface: #070b12;
+  --surface-raised: #0e1522;
+  --line: #1d2839;
   --ink: #eef3f6;
   --ink-muted: #9aa6b8;
   --noite: #24375c;
@@ -85,21 +85,22 @@
   --radius-md: var(--radius-md);
   --radius-lg: var(--radius-lg);
   --radius-pill: var(--radius-pill);
-  --text-display-xl: clamp(2.75rem, 10vw, 7rem);
-  --text-display-xl--line-height: 1.02;
-  --text-display-xl--letter-spacing: -0.02em;
-  --text-display-xl--font-weight: 600;
-  --text-display-l: clamp(2.25rem, 5vw, 4rem);
-  --text-display-l--line-height: 1.1;
-  --text-display-l--letter-spacing: -0.015em;
-  --text-display-l--font-weight: 600;
+  --text-display-xl: clamp(3rem, 6vw, 6.25rem);
+  --text-display-xl--line-height: 0.98;
+  --text-display-xl--letter-spacing: -0.035em;
+  --text-display-xl--font-weight: 400;
+  --text-display-l: clamp(2.25rem, 3.6vw, 3.25rem);
+  --text-display-l--line-height: 1.08;
+  --text-display-l--letter-spacing: -0.03em;
+  --text-display-l--font-weight: 400;
   --text-heading: 28px;
   --text-heading--line-height: 34px;
-  --text-heading--letter-spacing: -0.01em;
-  --text-heading--font-weight: 600;
+  --text-heading--letter-spacing: -0.02em;
+  --text-heading--font-weight: 500;
   --text-title: 20px;
   --text-title--line-height: 28px;
-  --text-title--font-weight: 600;
+  --text-title--letter-spacing: -0.01em;
+  --text-title--font-weight: 500;
   --text-body-l: 18px;
   --text-body-l--line-height: 28px;
   --text-body-l--font-weight: 400;

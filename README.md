@@ -6,9 +6,7 @@ Site da **Kodar**, a software house que desenvolve sites, sistemas sob medida, a
 
 Este repositório reúne a landing page institucional e todo o material da marca Kodar. Os sites de clientes são desenvolvidos em projetos e repositórios próprios.
 
-Landing page animada com escultura 3D interativa, serviços em acordeão editorial, simulação de automação, apresentação da empresa e dúvidas frequentes. Os contatos abrem o WhatsApp **(19) 99582-8704**, com mensagens específicas por serviço. A identidade da marca está organizada em [`brand/`](brand/).
-
-A [análise da marca e do posicionamento](docs/ANALISE-DA-MARCA.md) documenta as decisões de comunicação e design. A seção “Na prática” demonstra uma automação com um controle deslizante. É uma simulação; não representa um projeto entregue.
+Landing page em tema escuro, com cena 3D interativa no hero (Three.js), vitrine dos produtos (landing pages, sites e sistemas sob medida) com prévias animadas, princípios de conversão com mini animações, comparação com geradores de sites, linha do tempo do processo e dúvidas frequentes. Os contatos abrem o WhatsApp **(19) 99582-8704**, com mensagens específicas por produto. A identidade da marca está organizada em [`brand/`](brand/). Os mockups são ilustrativos: nomes e números neles não representam clientes reais.
 
 ## Começar
 
@@ -33,7 +31,7 @@ npm run dev        # http://localhost:3000
 
 ## Stack
 
-Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS 4, ESLint e Prettier. Fontes auto-hospedadas com `next/font/local`. A escultura usa Three.js, carregado separadamente, com alternativa em CSS.
+Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS 4, ESLint e Prettier. Fontes auto-hospedadas com `next/font/local`. A cena 3D usa Three.js, carregado separadamente, com alternativa em SVG.
 
 ## Comandos
 
