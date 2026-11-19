@@ -1,19 +1,16 @@
 import type { ComponentType, CSSProperties, SVGProps } from "react";
-import { Manrope } from "next/font/google";
+import Image from "next/image";
+import { Lora, Manrope } from "next/font/google";
 import {
-  ArrowRight,
   Baby,
   CalendarCheck,
   CircleCheck,
   ClipboardList,
-  CreditCard,
   Gem,
   HeartHandshake,
-  ScanLine,
+  MapPin,
   ShieldCheck,
-  Siren,
   Smile,
-  Sofa,
   Sparkles,
   Users,
 } from "lucide-react";
@@ -38,9 +35,11 @@ import type { DemoClient } from "../../types";
 import { odontoContent, type TreatmentIcon } from "./content";
 import { SmileSimulator } from "./SmileSimulator";
 import { ToothScene } from "./ToothScene";
+import { ClinicMedia } from "./ClinicMedia";
 import "./theme.css";
 
 const font = Manrope({ subsets: ["latin"], variable: "--font-odonto", display: "swap" });
+const editorialFont = Lora({ subsets: ["latin"], variable: "--font-odonto-serif", display: "swap" });
 
 const treatmentIcons: Record<TreatmentIcon, ComponentType<SVGProps<SVGSVGElement>>> = {
   implante: ToothIcon,
@@ -49,11 +48,25 @@ const treatmentIcons: Record<TreatmentIcon, ComponentType<SVGProps<SVGSVGElement
   lentes: Gem,
   prevencao: ShieldCheck,
   infantil: Baby,
+  clinico: ToothIcon,
+  endodontia: HeartHandshake,
 };
-const perkIcons = [CreditCard, Siren, ScanLine];
-const featureIcons = [HeartHandshake, ClipboardList, Users, Sofa];
+const perkIcons = [CalendarCheck, MapPin];
+const featureIcons = [HeartHandshake, ClipboardList, Users, MapPin];
 
-function Logo() {
+function Logo({ client }: { client: DemoClient }) {
+  if (client.brand?.logo) {
+    return (
+      <Image
+        src={client.brand.logo}
+        alt={client.brand.logoAlt ?? client.name}
+        width={150}
+        height={150}
+        className="od-client-logo"
+        unoptimized
+      />
+    );
+  }
   return (
     <span className="od-logo-mark" aria-hidden="true">
       <ToothIcon width={20} height={20} />
@@ -66,10 +79,13 @@ export function OdontoTemplate({ client }: { client: DemoClient }) {
   const book = clientWhatsapp(client, c.book);
 
   return (
-    <div className={`demo demo-odonto ${font.variable}`}>
+    <div
+      className={`demo demo-odonto ${font.variable} ${editorialFont.variable}`}
+      data-od-theme={client.brand?.theme}
+    >
       <DemoHeader
         client={client}
-        logo={<Logo />}
+        logo={<Logo client={client} />}
         nav={c.nav}
         ctaLabel="Agendar avaliação"
         ctaMessage={c.book}
@@ -86,7 +102,11 @@ export function OdontoTemplate({ client }: { client: DemoClient }) {
           <div className="d-container od-hero-grid">
             <div className="od-hero-copy">
               <p className="od-badge od-in" style={{ "--j": 0 } as CSSProperties}>
-                <Stars size={14} />
+                {client.rating ? (
+                  <Stars score={client.rating.score} size={14} />
+                ) : (
+                  <MapPin size={16} aria-hidden="true" />
+                )}
                 {c.hero.badge}
               </p>
               <h1 className="d-h1 od-hero-title">
@@ -121,16 +141,30 @@ export function OdontoTemplate({ client }: { client: DemoClient }) {
               </ul>
             </div>
 
-            <div className="od-hero-visual">
-              <div className="od-halo" aria-hidden="true" />
-              <ToothScene />
+            <div className="od-hero-visual" data-photo={Boolean(client.photos?.hero) || undefined}>
+              {client.photos?.hero ? (
+                <Image
+                  src={client.photos.hero}
+                  alt={client.photos.heroAlt ?? `A clínica ${client.name}`}
+                  fill
+                  sizes="(min-width: 1024px) 560px, 100vw"
+                  className="od-hero-photo"
+                  preload
+                  unoptimized
+                />
+              ) : (
+                <>
+                  <div className="od-halo" aria-hidden="true" />
+                  <ToothScene />
+                </>
+              )}
               <div className="od-float od-float-1" aria-hidden="true">
                 <span className="od-float-icon">
                   <CalendarCheck size={18} />
                 </span>
                 <span>
-                  <small>Próximo horário</small>
-                  <b>Hoje, 16h30</b>
+                  <small>Seu primeiro passo</small>
+                  <b>Agende uma avaliação</b>
                 </span>
               </div>
               {client.rating ? (
@@ -142,11 +176,13 @@ export function OdontoTemplate({ client }: { client: DemoClient }) {
               ) : (
                 <div className="od-float od-float-2" aria-hidden="true">
                   <span className="od-float-icon">
-                    <ScanLine size={18} />
+                    <MapPin size={18} />
                   </span>
                   <span>
-                    <small>Avaliação completa</small>
-                    <b>Raio-x digital</b>
+                    <small>
+                      {client.city} · {client.state}
+                    </small>
+                    <b>{client.neighborhood ?? "Conheça a clínica"}</b>
                   </span>
                 </div>
               )}
@@ -155,8 +191,8 @@ export function OdontoTemplate({ client }: { client: DemoClient }) {
                   <Sparkles size={18} />
                 </span>
                 <span>
-                  <small>Clareamento</small>
-                  <b>Sorriso mais branco</b>
+                  <small>Cuidado com você</small>
+                  <b>Seu sorriso importa</b>
                 </span>
               </div>
             </div>
@@ -184,12 +220,12 @@ export function OdontoTemplate({ client }: { client: DemoClient }) {
           <div className="d-container">
             <SectionHead
               eyebrow="Tratamentos"
-              title="Tudo para o seu sorriso,"
-              accent="em um só lugar."
-              text="Da prevenção à estética, com especialistas que explicam cada passo antes de começar."
+              title={c.treatmentIntro.title}
+              accent={c.treatmentIntro.accent}
+              text={c.treatmentIntro.text}
               center
             />
-            <ul className="od-treatments">
+            <ul className="od-treatments" data-count={c.treatments.length}>
               {c.treatments.map((treatment, index) => {
                 const Icon = treatmentIcons[treatment.icon];
                 return (
@@ -205,7 +241,7 @@ export function OdontoTemplate({ client }: { client: DemoClient }) {
                       rel="noopener noreferrer"
                       className="od-link"
                     >
-                      Agendar avaliação <ArrowRight size={16} aria-hidden="true" />
+                      Conversar sobre {treatment.title.toLowerCase()}
                     </a>
                   </li>
                 );
@@ -215,40 +251,47 @@ export function OdontoTemplate({ client }: { client: DemoClient }) {
         </section>
 
         {/* Simulador */}
-        <section id="simulador" className="d-section od-sim">
-          <div className="d-container od-sim-grid">
-            <div>
-              <SectionHead
-                eyebrow={c.simulator.eyebrow}
-                title={c.simulator.title}
-                accent={c.simulator.accent}
-                text={c.simulator.text}
-              />
-              <a
-                href={clientWhatsapp(client, c.simulator.message)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="d-btn d-btn-primary"
-                data-reveal
-              >
-                <WhatsAppIcon width={18} height={18} />
-                {c.simulator.cta}
-              </a>
-              <p className="od-note" data-reveal>
-                {c.simulator.note}
-              </p>
+        {c.showSimulator ? (
+          <section id="simulador" className="d-section od-sim">
+            <div className="d-container od-sim-grid">
+              <div>
+                <SectionHead
+                  eyebrow={c.simulator.eyebrow}
+                  title={c.simulator.title}
+                  accent={c.simulator.accent}
+                  text={c.simulator.text}
+                />
+                <a
+                  href={clientWhatsapp(client, c.simulator.message)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="d-btn d-btn-primary"
+                  data-reveal
+                >
+                  <WhatsAppIcon width={18} height={18} />
+                  {c.simulator.cta}
+                </a>
+                <p className="od-note" data-reveal>
+                  {c.simulator.note}
+                </p>
+              </div>
+              <div data-reveal>
+                <SmileSimulator />
+              </div>
             </div>
-            <div data-reveal>
-              <SmileSimulator />
-            </div>
-          </div>
-        </section>
+          </section>
+        ) : null}
 
         {/* A clínica */}
         <section id="clinica" className="d-section">
           <div className="d-container od-clinic">
             <div>
-              <SectionHead eyebrow={c.clinic.eyebrow} title={c.clinic.title} accent={c.clinic.accent} />
+              <SectionHead
+                eyebrow={c.clinic.eyebrow}
+                title={c.clinic.title}
+                accent={c.clinic.accent}
+                text={c.clinic.text}
+              />
               <ul className="od-features">
                 {c.clinic.features.map((feature, index) => {
                   const Icon = featureIcons[index % featureIcons.length];
@@ -266,18 +309,35 @@ export function OdontoTemplate({ client }: { client: DemoClient }) {
                 })}
               </ul>
             </div>
-            <ul className="od-stats">
-              {c.clinic.stats.map((stat, index) => (
-                <li key={stat.label} data-reveal style={delay(index)}>
-                  <strong>
-                    <CountUp value={stat.value} decimals={stat.decimals} suffix={stat.suffix} />
-                  </strong>
-                  <span>{stat.label}</span>
-                </li>
-              ))}
-            </ul>
+            {c.clinic.stats.length ? (
+              <ul className="od-stats">
+                {c.clinic.stats.map((stat, index) => (
+                  <li key={stat.label} data-reveal style={delay(index)}>
+                    <strong>
+                      <CountUp value={stat.value} decimals={stat.decimals} suffix={stat.suffix} />
+                    </strong>
+                    <span>{stat.label}</span>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <div className="od-clinic-invitation" data-reveal>
+                <span className="d-eyebrow">
+                  {client.city} · {client.state}
+                </span>
+                <ToothIcon width={76} height={76} strokeWidth={1} aria-hidden="true" />
+                <p className="d-h2">{c.hero.visualLabel}</p>
+                <p>{c.hero.visualText}</p>
+                <a href={book} target="_blank" rel="noopener noreferrer" className="d-btn d-btn-primary">
+                  <WhatsAppIcon width={18} height={18} />
+                  Agendar uma avaliação
+                </a>
+              </div>
+            )}
           </div>
         </section>
+
+        {c.hasMedia ? <ClinicMedia client={client} content={c.gallery} /> : null}
 
         {/* Como agendar */}
         <section className="d-section od-steps-section">
@@ -296,21 +356,23 @@ export function OdontoTemplate({ client }: { client: DemoClient }) {
         </section>
 
         {/* Avaliações */}
-        <section id="avaliacoes" className="d-section od-reviews">
-          <div className="d-container od-reviews-head">
-            <SectionHead eyebrow={c.reviews.eyebrow} title={c.reviews.title} accent={c.reviews.accent} />
-            {client.rating ? (
-              <div className="od-rating" data-reveal>
-                <strong>{client.rating.score.toLocaleString("pt-BR")}</strong>
-                <div>
-                  <Stars size={18} />
-                  <span>{client.rating.count} avaliações no Google</span>
+        {c.hasReviews ? (
+          <section id="avaliacoes" className="d-section od-reviews">
+            <div className="d-container od-reviews-head">
+              <SectionHead eyebrow={c.reviews.eyebrow} title={c.reviews.title} accent={c.reviews.accent} />
+              {client.rating ? (
+                <div className="od-rating" data-reveal>
+                  <strong>{client.rating.score.toLocaleString("pt-BR")}</strong>
+                  <div>
+                    <Stars size={18} />
+                    <span>{client.rating.count} avaliações no Google</span>
+                  </div>
                 </div>
-              </div>
-            ) : null}
-          </div>
-          <Reviews items={c.reviews.items} />
-        </section>
+              ) : null}
+            </div>
+            <Reviews items={c.reviews.items} />
+          </section>
+        ) : null}
 
         {/* Dúvidas e contato */}
         <section id="contato" className="d-section">
@@ -349,7 +411,7 @@ export function OdontoTemplate({ client }: { client: DemoClient }) {
                 {c.cta.button}
               </a>
               <ul>
-                {["Resposta rápida", "Sem compromisso", "Atendimento humanizado"].map((item) => (
+                {c.cta.perks.map((item) => (
                   <li key={item}>
                     <CircleCheck size={16} aria-hidden="true" />
                     {item}
@@ -363,7 +425,7 @@ export function OdontoTemplate({ client }: { client: DemoClient }) {
 
       <DemoFooter
         client={client}
-        logo={<Logo />}
+        logo={<Logo client={client} />}
         note={client.responsible ? `Responsável técnico: ${client.responsible}` : undefined}
       />
       <WhatsAppFab client={client} message={c.book} bubble={c.fabBubble} />

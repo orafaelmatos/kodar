@@ -154,7 +154,7 @@ export function DemoFooter({ client, logo, note }: { client: DemoClient; logo: R
         <div className="d-footer-brand">
           <span className="d-logo">
             {logo}
-            <span>{client.shortName ?? client.name}</span>
+            {client.brand?.logo ? null : <span>{client.shortName ?? client.name}</span>}
           </span>
           <p>
             {client.name} · {client.city} - {client.state}

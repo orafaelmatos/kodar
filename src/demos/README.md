@@ -14,7 +14,9 @@ Cada demo fica em `kodarsoft.com/demo/<slug>`, fora do Google (noindex), e mostr
 
 Fotos reais: coloque o arquivo em `public/demos/<slug>/` (WebP, até ~300 KB) e preencha `photos: { hero: "/demos/<slug>/hero.webp", heroAlt: "..." }`. Sem foto, o template usa a ilustração do nicho (na oficina, o carro em desenho técnico).
 
-Campos que você não preencher ficam de fora. A demo **não inventa** nota, avaliações nem tempo de mercado. Os depoimentos padrão do nicho são exemplos: troque pelos reais antes de o cliente publicar o site.
+Na odontologia, `photos.gallery` aceita fotos com `src`, `alt`, `caption` e um `sourceUrl` opcional. `videos` aceita vídeos locais com `src`, `caption` e `poster` opcional. A galeria só aparece quando há arquivos. `brand.logo` permite usar a logo original e `brand.theme: "forest"` seleciona uma paleta verde com fundo claro quente. `dentalServices` limita as especialidades apresentadas; o simulador só aparece quando há clareamento. Veja a [demo Pro Dente](../../docs/demos/pro-dente.md).
+
+Campos que você não preencher ficam de fora. A demo **não inventa** nota, avaliações nem tempo de mercado. Na odontologia, a seção de depoimentos só aparece com itens fornecidos em `testimonials`. Nos demais nichos, troque os exemplos pelos depoimentos reais antes de o cliente publicar o site.
 
 ## Nichos
 

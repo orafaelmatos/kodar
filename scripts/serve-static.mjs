@@ -15,12 +15,17 @@ const types = {
   ".json": "application/json",
   ".svg": "image/svg+xml",
   ".png": "image/png",
+  ".jpg": "image/jpeg",
+  ".jpeg": "image/jpeg",
   ".ico": "image/x-icon",
   ".webp": "image/webp",
   ".avif": "image/avif",
   ".woff2": "font/woff2",
   ".txt": "text/plain; charset=utf-8",
   ".xml": "application/xml; charset=utf-8",
+  ".mp4": "video/mp4",
+  ".webm": "video/webm",
+  ".vtt": "text/vtt; charset=utf-8",
 };
 
 try {
@@ -28,6 +33,21 @@ try {
 } catch {
   console.error("Build não encontrada. Execute npm run build antes de npm start.");
   process.exit(1);
+}
+
+/** Next exports /demo/name as name.html beside a directory of route payloads. */
+async function findStaticFile(path) {
+  const candidates = [path];
+  if (path !== directory) candidates.push(`${path}.html`);
+  candidates.push(resolve(path, "index.html"));
+
+  for (const candidate of candidates) {
+    try {
+      if ((await stat(candidate)).isFile()) return candidate;
+    } catch {
+      // Try the next form of the exported route.
+    }
+  }
 }
 
 const server = createServer(async (request, response) => {
@@ -38,15 +58,13 @@ const server = createServer(async (request, response) => {
 
   try {
     const pathname = decodeURIComponent(new URL(request.url, "http://localhost").pathname);
-    let file = resolve(directory, `.${pathname}`);
-    if (file !== directory && !file.startsWith(`${directory}${sep}`)) {
+    const path = resolve(directory, `.${pathname.replace(/\/+$/, "") || "/"}`);
+    if (path !== directory && !path.startsWith(`${directory}${sep}`)) {
       response.writeHead(403).end();
       return;
     }
-    try {
-      if ((await stat(file)).isDirectory()) file = resolve(file, "index.html");
-      await access(file);
-    } catch {
+    let file = await findStaticFile(path);
+    if (!file) {
       file = resolve(directory, "404.html");
       response.statusCode = 404;
     }
@@ -74,5 +92,5 @@ const server = createServer(async (request, response) => {
   }
 });
 
-server.listen(port, host, () => console.log(`Kodar: http://${host}:${port}`));
+server.listen(port, host, () => console.log(`Kodar: http://${host}:${server.address().port}`));
 for (const signal of ["SIGINT", "SIGTERM"]) process.on(signal, () => server.close());

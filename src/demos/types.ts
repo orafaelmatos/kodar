@@ -5,6 +5,9 @@
  */
 export type Niche = "odonto" | "oficina" | "marmoraria" | "marcenaria" | "metalurgica";
 
+export type DentalService =
+  "implante" | "clareamento" | "ortodontia" | "lentes" | "prevencao" | "infantil" | "clinico" | "endodontia";
+
 export type DemoClient = {
   /** Endereço da demo: /demo/<slug>. Só letras minúsculas, números e hífen. */
   slug: string;
@@ -37,11 +40,27 @@ export type DemoClient = {
   responsible?: string;
   /** Troca o título principal padrão do nicho. */
   headline?: string;
+  /** Identidade própria do cliente. As paletas ficam no theme.css do nicho. */
+  brand?: { theme?: "forest"; logo?: string; logoAlt?: string };
+  /** Especialidades confirmadas da clínica; omita para usar o modelo do nicho. */
+  dentalServices?: readonly DentalService[];
   /**
    * Fotos reais do cliente (caminho em /public ou URL). Sem elas, o template usa
    * a ilustração do nicho. Use imagens já otimizadas (WebP, até ~300 KB).
    */
-  photos?: { hero?: string; heroAlt?: string };
-  /** Depoimentos reais. Sem eles, a demo usa exemplos do nicho. */
+  photos?: {
+    hero?: string;
+    heroAlt?: string;
+    gallery?: readonly {
+      src: string;
+      alt: string;
+      caption?: string;
+      sourceUrl?: string;
+      sourceLabel?: string;
+    }[];
+  };
+  /** Vídeos locais da clínica, exibidos com controles e sem reprodução automática. */
+  videos?: readonly { src: string; poster?: string; caption: string }[];
+  /** Depoimentos reais. Na odontologia, a seção fica oculta quando não há itens. */
   testimonials?: { name: string; text: string }[];
 };

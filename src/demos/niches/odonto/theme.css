@@ -751,3 +751,195 @@ body:has(.demo-odonto) {
     rotate: 360deg;
   }
 }
+
+/* Identidade Pro Dente: verde profundo e tons quentes da logo original. */
+body:has(.demo-odonto[data-od-theme="forest"]) {
+  background: #f6f4ef;
+}
+.demo-odonto[data-od-theme="forest"] {
+  --d-bg: #f6f4ef;
+  --d-surface: #fffefa;
+  --d-fg: #153b2f;
+  --d-muted: #526359;
+  --d-line: #d9ded4;
+  --d-accent: #1a4b38;
+  --d-accent-dark: #103326;
+  --d-accent-soft: #e8ede1;
+  --d-accent-text: #24553e;
+  --d-glow: #b2c59a;
+  --d-footer-bg: #103326;
+  --d-footer-fg: #f6f4ef;
+  --d-font-display: var(--font-odonto-serif), Georgia, serif;
+  --od-shadow: 0 24px 60px -30px rgb(21 59 47 / 0.22);
+}
+.demo-odonto[data-od-theme="forest"] .d-h1,
+.demo-odonto[data-od-theme="forest"] .d-h2 {
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  line-height: 1.12;
+}
+.demo-odonto[data-od-theme="forest"] .d-h3 {
+  font-family: var(--d-font-body);
+}
+.demo-odonto[data-od-theme="forest"] .d-eyebrow {
+  font-size: 14px;
+}
+.demo-odonto[data-od-theme="forest"] .d-btn {
+  border-radius: 12px;
+  box-shadow: none;
+}
+.demo-odonto[data-od-theme="forest"] .d-header {
+  background: color-mix(in oklab, var(--d-bg) 94%, transparent);
+  border-bottom: 1px solid var(--d-line);
+}
+.demo-odonto[data-od-theme="forest"] .d-header-inner {
+  height: 92px;
+}
+.od-client-logo {
+  display: block;
+  width: 132px;
+  height: 78px;
+  border-radius: 6px;
+  object-fit: cover;
+  object-position: center;
+}
+.demo-odonto[data-od-theme="forest"] .od-hero-title {
+  max-width: 12ch;
+  font-size: clamp(3rem, 5.4vw, 5rem);
+}
+.demo-odonto[data-od-theme="forest"] .od-blobs span:nth-child(2) {
+  background: var(--d-accent-soft);
+}
+.demo-odonto[data-od-theme="forest"] .od-hero {
+  padding-top: 152px;
+}
+.demo-odonto[data-od-theme="forest"] .od-badge {
+  padding-inline: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  color: var(--d-accent-text);
+}
+.demo-odonto[data-od-theme="forest"] .od-float {
+  border-color: var(--d-line);
+  background: color-mix(in oklab, var(--d-surface) 94%, transparent);
+}
+.demo-odonto[data-od-theme="forest"] .od-float small {
+  font-size: 14px;
+}
+.demo-odonto[data-od-theme="forest"] .od-cta h2 span {
+  color: var(--d-accent-soft);
+}
+.demo-odonto[data-od-theme="forest"] .od-steps-section {
+  background: var(--d-accent-soft);
+}
+.demo-odonto[data-od-theme="forest"] .od-treatment {
+  border-radius: 12px;
+}
+.demo-odonto[data-od-theme="forest"] .od-treatment:hover {
+  box-shadow: none;
+}
+.od-treatments[data-count="4"] {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.od-clinic-invitation {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  padding: 40px;
+  border: 1px solid var(--d-line);
+  border-radius: var(--d-radius);
+  background: var(--d-accent-soft);
+}
+.od-clinic-invitation .d-eyebrow {
+  margin: 0;
+}
+.od-clinic-invitation > p:not(.d-h2) {
+  color: var(--d-muted);
+  font-size: 18px;
+}
+.od-hero-photo {
+  object-fit: cover;
+  border-radius: 32px 32px 120px 32px;
+}
+.od-hero-visual[data-photo] {
+  aspect-ratio: 4 / 5;
+}
+.od-gallery-section {
+  border-block: 1px solid var(--d-line);
+  background: var(--d-surface);
+}
+.od-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+.od-media {
+  overflow: hidden;
+  align-self: start;
+  border: 1px solid var(--d-line);
+  border-radius: var(--d-radius);
+  background: var(--d-bg);
+}
+.od-media-image {
+  position: relative;
+  aspect-ratio: 1;
+}
+.od-media-image img {
+  object-fit: cover;
+  object-position: center 20%;
+}
+.od-media video {
+  display: block;
+  width: 100%;
+  max-height: 540px;
+  background: var(--d-footer-bg);
+}
+.od-media figcaption {
+  padding: 16px 20px;
+  color: var(--d-muted);
+}
+.od-media-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  color: var(--d-accent-text);
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+@media (max-width: 1023px) {
+  .od-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 639px) {
+  .od-treatments[data-count="4"],
+  .od-gallery {
+    grid-template-columns: 1fr;
+  }
+  .od-clinic-invitation {
+    padding: 28px;
+  }
+  .od-clinic-invitation .d-btn {
+    width: 100%;
+    padding-inline: 16px;
+  }
+  .demo-odonto[data-od-theme="forest"] .od-hero-title {
+    max-width: 13ch;
+  }
+  .demo-odonto[data-od-theme="forest"] .od-hero-visual {
+    max-width: 420px;
+  }
+  .od-hero-visual[data-photo] .od-float-1,
+  .od-hero-visual[data-photo] .od-float-3 {
+    display: none;
+  }
+  .od-hero-visual[data-photo] .od-float-2 {
+    top: 16px;
+    right: 16px;
+  }
+}

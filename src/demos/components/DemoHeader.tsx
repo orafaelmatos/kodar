@@ -35,9 +35,14 @@ export function DemoHeader({ client, logo, nav, ctaLabel, ctaMessage }: DemoHead
   return (
     <header className="d-header" data-scrolled={scrolled || open || undefined}>
       <div className="d-container d-header-inner">
-        <a href="#inicio" className="d-logo" onClick={() => setOpen(false)}>
+        <a
+          href="#inicio"
+          className="d-logo"
+          aria-label={`${client.name} — início`}
+          onClick={() => setOpen(false)}
+        >
           {logo}
-          <span>{client.shortName ?? client.name}</span>
+          {client.brand?.logo ? null : <span>{client.shortName ?? client.name}</span>}
         </a>
         <nav className="d-nav" aria-label="Navegação principal">
           {nav.map((item) => (

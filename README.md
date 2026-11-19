@@ -44,6 +44,8 @@ Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS 4, ESLint e Prettier
 
 ## Publicação
 
+Para publicar na VPS pelo GitHub, siga o [guia de deploy no Easypanel](docs/DEPLOY-EASYPANEL.md). O `Dockerfile` compila o projeto e serve o site e as demos na porta interna `3000`, com `HOST=0.0.0.0`. A imagem de produção inclui somente os arquivos estáticos e o servidor, sem as dependências de build.
+
 O projeto gera arquivos estáticos na pasta `out/`, sem depender de servidor de aplicação. Essa pasta pode ser publicada em uma hospedagem estática. O servidor de `npm start` permite conferir a build local; `PORT` e `HOST` são opcionais.
 
 O endereço principal usa `https://kodarsoft.com` por padrão. Para publicar em outro endereço, defina `NEXT_PUBLIC_SITE_URL` **antes da build**, para atualizar os metadados, o sitemap e os dados estruturados:

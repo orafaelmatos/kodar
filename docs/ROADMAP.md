@@ -19,7 +19,7 @@
 - [ ] Etapa 5: marcenaria e móveis planejados.
 - [ ] Etapa 6: pequena indústria e metalúrgica.
 - [ ] Imagem de compartilhamento por demo (prévia do link no WhatsApp com o nome do cliente).
-- [ ] Fotos reais do cliente nos templates (campo opcional), quando ele enviar.
+- [x] Fotos reais na odontologia: abertura, galeria e suporte a vídeos locais. Demo Pro Dente com identidade própria e imagens do Instagram oficial.
 
 ## Pendências de conteúdo (do Rafael)
 
